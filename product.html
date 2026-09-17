@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<meta name="description" content="FRRIDAY product detail.">
+<title>FRRIDAY® | Product</title>
+<link rel="icon" href="assets/symbol-white.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="product.css">
+</head>
+<body class="product-page">
+<div class="noise" aria-hidden="true"></div>
+<header class="nav product-nav" id="nav">
+  <a class="brand" href="/" aria-label="FRRIDAY home">FRRIDAY<span>®</span></a>
+  <nav class="nav-links" aria-label="Primary navigation">
+    <a href="/#shop">Shop</a><a href="/#drop">Friday Drop</a><a href="/#about">About</a>
+  </nav>
+  <a class="bag-btn" href="https://pxhdjy-sj.myshopify.com/cart" aria-label="Open FRRIDAY bag">Bag <span>↗</span></a>
+</header>
+
+<main>
+  <div id="productLoading" class="product-state"><span class="eyebrow">FRRIDAY / PRODUCT</span><strong>Loading product</strong><i></i></div>
+  <section id="productError" class="product-state error-state" hidden>
+    <span class="eyebrow">PRODUCT / UNAVAILABLE</span>
+    <h1>We couldn't load this piece.</h1>
+    <p>Return to the collection and try again.</p>
+    <a class="pill dark-pill" href="/#shop">Back to collection <span>↖</span></a>
+  </section>
+
+  <section id="productView" hidden>
+    <div class="product-hero">
+      <div class="product-gallery" id="gallery">
+        <div class="gallery-main"><img id="mainImage" alt=""></div>
+        <div class="gallery-thumbs" id="thumbs" aria-label="Product images"></div>
+        <span class="gallery-index" id="galleryIndex">01 / 01</span>
+      </div>
+
+      <aside class="product-panel">
+        <div class="product-kicker"><span id="productType">CORE</span><span id="productAvailability">AVAILABLE</span></div>
+        <h1 id="productTitle"></h1>
+        <div class="product-price-row"><strong id="productPrice"></strong><span id="productCompare" hidden></span></div>
+        <div class="product-description" id="productDescription"></div>
+
+        <div class="product-selector-block">
+          <div class="selector-head"><span>SIZE</span><button id="sizeGuide" type="button">SIZE GUIDE ↗</button></div>
+          <div id="sizeOptions" class="size-options"></div>
+          <p class="selection-note" id="selectionNote">Select a size to continue.</p>
+        </div>
+
+        <div class="purchase-row">
+          <div class="qty" aria-label="Quantity"><button type="button" data-qty="-1" aria-label="Decrease quantity">−</button><span id="quantity">1</span><button type="button" data-qty="1" aria-label="Increase quantity">+</button></div>
+          <button id="addToBag" class="purchase-btn" type="button" disabled>ADD TO BAG <span>↗</span></button>
+        </div>
+        <div id="purchaseStatus" class="purchase-status" aria-live="polite"></div>
+
+        <div class="product-accordions">
+          <details open><summary>DESCRIPTION <span>+</span></summary><div id="detailsDescription"></div></details>
+          <details><summary>DETAILS <span>+</span></summary><div id="detailsList"></div></details>
+          <details><summary>SHIPPING & RETURNS <span>+</span></summary><div><p>Made to order through our fulfillment partner. Delivery estimates and available shipping methods are shown at checkout.</p><p>Returns follow the store policy shown at checkout.</p></div></details>
+        </div>
+      </aside>
+    </div>
+
+    <section class="product-editorial">
+      <div class="editorial-label"><span>FRRIDAY / OBJECT STUDY</span><span id="editorialCount">01</span></div>
+      <div class="editorial-copy"><p class="editorial-big">Quiet form.<br><em>Considered detail.</em></p><p>Built around the garment rather than the logo. The product page is generated directly from Shopify, so product information, imagery, pricing and availability stay synchronized with the store.</p></div>
+    </section>
+  </section>
+</main>
+
+<div class="size-modal" id="sizeModal" hidden>
+  <div class="size-modal-backdrop" data-close-size></div>
+  <div class="size-modal-card" role="dialog" aria-modal="true" aria-labelledby="sizeModalTitle">
+    <button class="modal-close" type="button" data-close-size aria-label="Close size guide">×</button>
+    <span class="eyebrow">FRRIDAY / GUIDE</span><h2 id="sizeModalTitle">SIZE GUIDE</h2>
+    <div class="size-table"><div><span>SIZE</span><span>CHEST</span><span>LENGTH</span></div><div><span>XS</span><span>26–29 in</span><span>23½ in</span></div><div><span>S</span><span>28–31 in</span><span>24½ in</span></div><div><span>M</span><span>30–33 in</span><span>25½ in</span></div><div><span>L</span><span>32–35 in</span><span>26½ in</span></div><div><span>XL</span><span>34–37 in</span><span>27½ in</span></div><div><span>2XL</span><span>36–39 in</span><span>28½ in</span></div><div><span>3XL</span><span>38–41 in</span><span>29½ in</span></div></div>
+    <p>Measurements are shown as a general guide. For the most accurate fit, compare with a garment you already own.</p>
+  </div>
+</div>
+
+<div class="product-toast" id="productToast" role="status" aria-live="polite"></div>
+<script src="shopify-config.js"></script>
+<script src="product.js"></script>
+</body>
+</html>
