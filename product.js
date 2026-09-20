@@ -28,37 +28,42 @@ function setGallery(i){
   if (!img) return;
 
   const main = $('#mainImage');
+  const fallback = $('#galleryFallback');
 
-  // Clear previous states, but DO NOT set src to an empty string.
-  main.classList.remove('is-error');
-  main.classList.remove('is-ready');
+  // Reset all visual states
+  main.classList.remove('is-ready', 'is-error');
+  fallback.hidden = true;
 
-  main.onload = () => {
-    main.classList.remove('is-error');
-    main.classList.add('is-ready');
-    $('#galleryFallback').hidden = true;
-  };
-
-  main.onerror = () => {
-    main.classList.remove('is-ready');
-    main.classList.add('is-error');
-    $('#galleryFallback').hidden = false;
-  };
-
+  // Set metadata before loading
   main.alt = img.alt || humanTitle(product.title);
 
-  // Set the real image directly.
-  main.src = img.url;
+  // Create a temporary image so we know the asset loads
+  // before replacing the visible gallery image.
+  const preload = new Image();
 
+  preload.onload = () => {
+    main.src = img.url;
+    main.classList.remove('is-error');
+    main.classList.add('is-ready');
+    fallback.hidden = true;
+  };
+
+  preload.onerror = () => {
+    main.classList.remove('is-ready');
+    main.classList.add('is-error');
+    fallback.hidden = false;
+  };
+
+  preload.src = img.url;
+
+  // Update thumbnails
   $$('.gallery-thumb').forEach((b, n) => {
     b.classList.toggle('active', n === i);
   });
 
+  // Update counter
   $('#galleryIndex').textContent =
     `${String(i + 1).padStart(2, '0')} / ${String(galleryImages.length).padStart(2, '0')}`;
-
-  // Hide fallback while the new image is loading.
-  $('#galleryFallback').hidden = true;
 }
 function renderGallery(){
  galleryImages=localGallery();
