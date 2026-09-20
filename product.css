@@ -8,10 +8,12 @@
 .product-state strong{font-size:clamp(38px,7vw,100px);letter-spacing:-.07em;font-weight:500}
 .product-state i{width:100px;height:1px;background:#111;overflow:hidden;position:relative}.product-state i:after{content:"";position:absolute;inset:0;background:#777;transform:translateX(-100%);animation:productLoad 1.2s ease-in-out infinite}
 .error-state h1{font-size:clamp(48px,8vw,110px);line-height:.86;letter-spacing:-.07em;max-width:900px;margin:10px 0}.error-state p{color:#666;max-width:350px;line-height:1.7}
-.dark-pill{background:#0a0a0a;color:#fff;border-color:#0a0a0a}.dark-pill:hover{background:#2a2a27;color:#fff}
+.dark-pill{background:#0a0a0a;color:#fff;border-color:#0a0a0a}.dark-pill:hove.gallery-mainr{background:#2a2a27;color:#fff}
 .product-hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(390px,.65fr);min-height:calc(100vh - 64px);border-bottom:1px solid var(--line)}
 .product-gallery{position:relative;background:#090909;min-height:calc(100vh - 64px);padding:40px;display:grid;grid-template-columns:minmax(0,1fr) 86px;gap:28px;align-items:center;overflow:hidden}
-.gallery-main{height:min(78vh,900px);display:grid;place-items:center;overflow:hidden;position:relative;background:#fff}.gallery-frame{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}.gallery-main img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;opacity:1;visibility:visible;transition:opacity .35s ease,transform .8s var(--ease)}.gallery-main img.is-ready{opacity:1}.gallery-main img.is-error{display:none}.gallery-main:hover img.is-ready{transform:scale(1.015)}.gallery-fallback{
+.gallery-main{height:min(78vh,900px);display:grid;place-items:center;overflow:hidden;position:relative;background:#fff}.gallery-frame{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}.gallery-main img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;opacity:1;visibility:visible;transition:opacity .35s ease,transform .8s var(--ease)}.gallery-main img.is-ready{opacity:1}.gallery-main img.is-error{
+  display:block;
+}.gallery-main:hover img.is-ready{transform:scale(1.015)}.gallery-fallback{
   position:absolute;
   inset:0;
   display:grid;
