@@ -24,23 +24,41 @@ function localGallery(){
  return [];
 }
 function setGallery(i){
- const img=galleryImages[i]; if(!img)return;
- const main=$('#mainImage');
- const fallback=$('#galleryFallback');
- main.classList.remove('is-ready','is-error');
- fallback.hidden=true;
- main.onload=()=>main.classList.add('is-ready');
- main.onerror=()=>{main.classList.remove('is-ready');main.classList.add('is-error');fallback.hidden=false;};
- main.alt=img.alt||humanTitle(product.title);
- // Do not clear src first. Clearing it can fire an asynchronous error event
- // and incorrectly mark the next valid image as unavailable.
- if(main.src !== new URL(img.url, location.origin).href){
-   main.src=img.url;
- } else if(main.complete && main.naturalWidth>0){
-   main.classList.add('is-ready');
- }
- $$('.gallery-thumb').forEach((b,n)=>b.classList.toggle('active',n===i));
- $('#galleryIndex').textContent=`${String(i+1).padStart(2,'0')} / ${String(galleryImages.length).padStart(2,'0')}`;
+  const img = galleryImages[i];
+  if (!img) return;
+
+  const main = $('#mainImage');
+
+  // Clear previous states, but DO NOT set src to an empty string.
+  main.classList.remove('is-error');
+  main.classList.remove('is-ready');
+
+  main.onload = () => {
+    main.classList.remove('is-error');
+    main.classList.add('is-ready');
+    $('#galleryFallback').hidden = true;
+  };
+
+  main.onerror = () => {
+    main.classList.remove('is-ready');
+    main.classList.add('is-error');
+    $('#galleryFallback').hidden = false;
+  };
+
+  main.alt = img.alt || humanTitle(product.title);
+
+  // Set the real image directly.
+  main.src = img.url;
+
+  $$('.gallery-thumb').forEach((b, n) => {
+    b.classList.toggle('active', n === i);
+  });
+
+  $('#galleryIndex').textContent =
+    `${String(i + 1).padStart(2, '0')} / ${String(galleryImages.length).padStart(2, '0')}`;
+
+  // Hide fallback while the new image is loading.
+  $('#galleryFallback').hidden = true;
 }
 function renderGallery(){
  galleryImages=localGallery();
