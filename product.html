@@ -1,483 +1,2216 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <meta
+    name="description"
+    content="FRRIDAY CORE. Considered garments for everyday wear."
+  />
 
-<meta charset="utf-8">
+  <title>FRRIDAY / Product</title>
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover"
->
+  <style>
+    :root {
+      --ink: #0a0a09;
+      --paper: #efeee8;
+      --surface: #f7f6f1;
+      --white: #ffffff;
+      --muted: #74736e;
+      --line: rgba(10, 10, 9, 0.14);
+      --line-soft: rgba(10, 10, 9, 0.08);
 
-<meta
-  name="theme-color"
-  content="#090909"
->
+      --sans:
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
 
-<meta
-  name="description"
-  content="FRRIDAY® product detail."
->
+      --mono:
+        "SFMono-Regular",
+        "Roboto Mono",
+        Consolas,
+        "Liberation Mono",
+        monospace;
 
-<meta
-  name="robots"
-  content="index,follow"
->
+      --nav-height: 76px;
+      --page-pad: clamp(18px, 3vw, 48px);
+    }
 
-<title>
-FRRIDAY® | Product
-</title>
+    * {
+      box-sizing: border-box;
+    }
 
-<link
-  rel="icon"
-  href="/assets/symbol-white.png"
->
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
 
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
->
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
->
+    button,
+    input {
+      font: inherit;
+    }
 
-<link
-  href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
->
+    button {
+      color: inherit;
+    }
 
-<link
-  rel="stylesheet"
-  href="/style.css"
->
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-<link
-  rel="stylesheet"
-  href="/product.css"
->
+    img {
+      max-width: 100%;
+    }
 
+    /* =========================================================
+       NAV
+    ========================================================= */
+
+    .site-nav {
+      height: var(--nav-height);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+
+      padding: 0 var(--page-pad);
+
+      background: rgba(239, 238, 232, 0.92);
+      border-bottom: 1px solid var(--line-soft);
+
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      justify-self: start;
+
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.045em;
+    }
+
+    .brand sup {
+      font-size: 6px;
+      vertical-align: top;
+      margin-left: 2px;
+      letter-spacing: 0;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .nav-center a {
+      position: relative;
+      opacity: 0.72;
+      transition: opacity 180ms ease;
+    }
+
+    .nav-center a:hover {
+      opacity: 1;
+    }
+
+    .nav-right {
+      justify-self: end;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .bag-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .bag-count {
+      min-width: 16px;
+      height: 16px;
+
+      display: inline-grid;
+      place-items: center;
+
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+
+      font-size: 8px;
+      letter-spacing: 0;
+    }
+
+    /* =========================================================
+       PAGE
+    ========================================================= */
+
+    .page {
+      width: 100%;
+    }
+
+    .product-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(390px, 0.75fr);
+
+      gap: clamp(34px, 5vw, 90px);
+
+      padding: clamp(18px, 2.8vw, 46px) var(--page-pad)
+        clamp(70px, 8vw, 130px);
+    }
+
+    /* =========================================================
+       GALLERY
+    ========================================================= */
+
+    .gallery-column {
+      min-width: 0;
+    }
+
+    .gallery-sticky {
+      position: sticky;
+      top: calc(var(--nav-height) + 18px);
+    }
+
+    .gallery {
+      position: relative;
+
+      background: var(--surface);
+
+      min-height: min(760px, calc(100vh - 130px));
+
+      overflow: hidden;
+    }
+
+    .gallery-main {
+      position: relative;
+
+      width: 100%;
+      height: min(760px, calc(100vh - 130px));
+
+      display: grid;
+      place-items: center;
+
+      overflow: hidden;
+    }
+
+    .gallery-main::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      box-shadow:
+        inset 0 0 0 1px rgba(0, 0, 0, 0.035);
+    }
+
+    .product-image {
+      position: absolute;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      padding: clamp(30px, 6vw, 100px);
+
+      opacity: 0;
+
+      transform: scale(0.985);
+
+      transition:
+        opacity 450ms cubic-bezier(0.2, 0.65, 0.2, 1),
+        transform 700ms cubic-bezier(0.2, 0.65, 0.2, 1);
+    }
+
+    .product-image.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .gallery-topline {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+
+      display: flex;
+      justify-content: space-between;
+
+      z-index: 5;
+
+      pointer-events: none;
+
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+
+      color: rgba(10, 10, 9, 0.55);
+    }
+
+    .gallery-index {
+      position: absolute;
+      bottom: 17px;
+      left: 18px;
+
+      z-index: 5;
+
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.12em;
+
+      color: rgba(10, 10, 9, 0.55);
+    }
+
+    .gallery-thumbs {
+      position: absolute;
+
+      right: 18px;
+      bottom: 18px;
+
+      display: flex;
+      gap: 7px;
+
+      z-index: 10;
+    }
+
+    .thumb {
+      width: 54px;
+      height: 68px;
+
+      padding: 0;
+
+      border: 1px solid rgba(10, 10, 9, 0.16);
+
+      background: rgba(247, 246, 241, 0.88);
+
+      cursor: pointer;
+
+      overflow: hidden;
+
+      transition:
+        border-color 180ms ease,
+        opacity 180ms ease;
+    }
+
+    .thumb:hover {
+      border-color: rgba(10, 10, 9, 0.5);
+    }
+
+    .thumb.active {
+      border-color: var(--ink);
+    }
+
+    .thumb img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    /* =========================================================
+       PRODUCT INFORMATION
+    ========================================================= */
+
+    .product-info {
+      min-width: 0;
+
+      padding-top: clamp(8px, 2vw, 28px);
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 26px;
+
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
+    .availability {
+      color: var(--ink);
+    }
+
+    .product-heading {
+      margin: 0;
+
+      max-width: 650px;
+
+      font-size: clamp(48px, 5.3vw, 92px);
+      line-height: 0.89;
+      font-weight: 500;
+      letter-spacing: -0.065em;
+    }
+
+    .product-subtitle {
+      margin: 18px 0 0;
+
+      font-size: 15px;
+      line-height: 1.45;
+
+      color: var(--muted);
+
+      max-width: 420px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+
+      margin-top: 34px;
+    }
+
+    .price {
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .compare-price {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .color-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-top: 46px;
+      padding-bottom: 13px;
+
+      border-bottom: 1px solid var(--line);
+
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .color-value {
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       SIZE
+    ========================================================= */
+
+    .section-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-top: 23px;
+      margin-bottom: 12px;
+
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .size-guide-trigger {
+      border: 0;
+      padding: 0;
+
+      background: transparent;
+
+      text-decoration: underline;
+      text-underline-offset: 3px;
+
+      cursor: pointer;
+    }
+
+    .size-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .size-button {
+      min-height: 48px;
+
+      border: 0;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+
+      background: transparent;
+
+      cursor: pointer;
+
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+
+      transition:
+        background 180ms ease,
+        color 180ms ease;
+    }
+
+    .size-button:hover {
+      background: rgba(10, 10, 9, 0.045);
+    }
+
+    .size-button.selected {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .size-button.disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .selection-note {
+      min-height: 20px;
+
+      margin: 10px 0 0;
+
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.09em;
+
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       BUY AREA
+    ========================================================= */
+
+    .buy-area {
+      margin-top: 27px;
+
+      display: grid;
+      grid-template-columns: 105px 1fr;
+
+      gap: 10px;
+    }
+
+    .quantity {
+      display: grid;
+      grid-template-columns: 32px 1fr 32px;
+
+      height: 52px;
+
+      border: 1px solid var(--line);
+    }
+
+    .quantity button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+
+      font-size: 14px;
+
+      transition: background 180ms ease;
+    }
+
+    .quantity button:hover {
+      background: rgba(10, 10, 9, 0.05);
+    }
+
+    .quantity-value {
+      display: grid;
+      place-items: center;
+
+      font-family: var(--mono);
+      font-size: 9px;
+    }
+
+    .add-button {
+      height: 52px;
+
+      border: 1px solid var(--ink);
+
+      background: var(--ink);
+      color: var(--paper);
+
+      cursor: pointer;
+
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+
+      transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+    }
+
+    .add-button:hover:not(:disabled) {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .add-button:active:not(:disabled) {
+      transform: scale(0.992);
+    }
+
+    .add-button:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* =========================================================
+       ACCORDIONS
+    ========================================================= */
+
+    .accordions {
+      margin-top: 48px;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .accordion {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .accordion summary {
+      min-height: 62px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      cursor: pointer;
+
+      list-style: none;
+
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion-icon {
+      font-size: 13px;
+      font-weight: 300;
+      transition: transform 180ms ease;
+    }
+
+    .accordion[open] .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-content {
+      padding: 0 0 24px;
+
+      max-width: 570px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .accordion-content p {
+      margin: 0;
+    }
+
+    /* =========================================================
+       LOADING / ERROR
+    ========================================================= */
+
+    .state {
+      min-height: 70vh;
+
+      display: grid;
+      place-items: center;
+
+      padding: 40px;
+
+      text-align: center;
+    }
+
+    .state-inner {
+      max-width: 460px;
+    }
+
+    .state-label {
+      margin-bottom: 16px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .state-message {
+      margin: 0;
+
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .back-link {
+      display: inline-block;
+
+      margin-top: 25px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* =========================================================
+       SIZE MODAL
+    ========================================================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+
+      z-index: 500;
+
+      display: none;
+      place-items: center;
+
+      padding: 24px;
+
+      background: rgba(10, 10, 9, 0.38);
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-card {
+      width: min(600px, 100%);
+
+      background: var(--paper);
+
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.18);
+    }
+
+    .modal-head {
+      min-height: 72px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 0 22px;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-title {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+
+      border: 1px solid var(--line);
+      border-radius: 50%;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 300;
+    }
+
+    .size-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .size-table th,
+    .size-table td {
+      padding: 15px 22px;
+
+      border-bottom: 1px solid var(--line-soft);
+
+      text-align: left;
+
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.05em;
+    }
+
+    .size-table th {
+      color: var(--muted);
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .size-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    .toast {
+      position: fixed;
+
+      left: 50%;
+      bottom: 24px;
+
+      z-index: 600;
+
+      transform: translate(-50%, 20px);
+
+      padding: 13px 18px;
+
+      background: var(--ink);
+      color: var(--paper);
+
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition:
+        opacity 220ms ease,
+        transform 220ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 980px) {
+      :root {
+        --nav-height: 64px;
+      }
+
+      .site-nav {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav-center {
+        display: none;
+      }
+
+      .product-shell {
+        grid-template-columns: 1fr;
+
+        gap: 38px;
+
+        padding-top: 12px;
+      }
+
+      .gallery-sticky {
+        position: relative;
+        top: auto;
+      }
+
+      .gallery,
+      .gallery-main {
+        min-height: 70vh;
+        height: 70vh;
+      }
+
+      .product-info {
+        padding-top: 4px;
+      }
+
+      .product-heading {
+        font-size: clamp(46px, 10vw, 76px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --page-pad: 14px;
+      }
+
+      .site-nav {
+        height: 62px;
+      }
+
+      .brand {
+        font-size: 15px;
+      }
+
+      .gallery,
+      .gallery-main {
+        min-height: 68vh;
+        height: 68vh;
+      }
+
+      .gallery-topline {
+        top: 13px;
+        left: 13px;
+        right: 13px;
+      }
+
+      .gallery-index {
+        bottom: 13px;
+        left: 13px;
+      }
+
+      .gallery-thumbs {
+        right: 13px;
+        bottom: 13px;
+      }
+
+      .thumb {
+        width: 44px;
+        height: 56px;
+      }
+
+      .product-image {
+        padding: 28px;
+      }
+
+      .product-meta {
+        margin-bottom: 21px;
+      }
+
+      .product-heading {
+        font-size: clamp(44px, 14vw, 68px);
+      }
+
+      .product-subtitle {
+        font-size: 14px;
+      }
+
+      .size-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .size-button {
+        min-height: 50px;
+      }
+
+      .buy-area {
+        grid-template-columns: 92px 1fr;
+      }
+
+      .accordions {
+        margin-top: 38px;
+      }
+
+      .modal {
+        padding: 12px;
+      }
+
+      .modal-card {
+        max-height: 90vh;
+        overflow: auto;
+      }
+
+      .size-table th,
+      .size-table td {
+        padding: 13px 14px;
+      }
+    }
+  </style>
 </head>
 
+<body>
 
-<body class="product-page">
+  <!-- =======================================================
+       NAV
+  ======================================================== -->
 
-<div
-  class="noise"
-  aria-hidden="true"
-></div>
+  <header class="site-nav">
+    <a class="brand" href="/">
+      FRRIDAY<sup>®</sup>
+    </a>
 
+    <nav class="nav-center">
+      <a href="/">Shop</a>
+      <a href="/#friday-drop">Friday Drop</a>
+      <a href="/#about">About</a>
+    </nav>
 
-<header
-  class="nav product-nav"
-  id="nav"
->
+    <div class="nav-right">
+      <a class="bag-link" href="/bag.html">
+        Bag
+        <span class="bag-count" id="bagCount">0</span>
+        ↗
+      </a>
+    </div>
+  </header>
 
-<a
-  class="brand"
-  href="/"
-  aria-label="FRRIDAY home"
->
-  FRRIDAY<span>®</span>
-</a>
 
+  <!-- =======================================================
+       LOADING
+  ======================================================== -->
 
-<nav
-  class="nav-links"
-  aria-label="Primary navigation"
->
+  <main id="loadingState" class="state">
+    <div class="state-inner">
+      <div class="state-label">FRRIDAY / LOADING</div>
+      <p class="state-message">
+        Preparing this piece.
+      </p>
+    </div>
+  </main>
 
-<a href="/shop.html">
-Shop
-</a>
 
-<a href="/#drop">
-Friday Drop
-</a>
+  <!-- =======================================================
+       ERROR
+  ======================================================== -->
 
-<a href="/#about">
-About
-</a>
+  <main id="errorState" class="state" hidden>
+    <div class="state-inner">
+      <div class="state-label">FRRIDAY / UNAVAILABLE</div>
 
-</nav>
+      <p id="errorMessage" class="state-message">
+        We couldn't load this piece.
+      </p>
 
+      <a class="back-link" href="/">
+        Back to collection
+      </a>
+    </div>
+  </main>
 
-<a
-  class="bag-btn"
-  href="/bag.html"
-  aria-label="Open FRRIDAY bag"
->
-Bag <span id="bagCount">0</span> ↗
-</a>
 
-</header>
+  <!-- =======================================================
+       PRODUCT
+  ======================================================== -->
 
+  <main id="productPage" class="page" hidden>
 
-<main>
+    <section class="product-shell">
 
+      <!-- GALLERY -->
 
-<div
-  id="productLoading"
-  class="product-state"
->
+      <div class="gallery-column">
 
-<span class="eyebrow">
-FRRIDAY / PRODUCT
-</span>
+        <div class="gallery-sticky">
 
-<strong>
-Loading product
-</strong>
+          <div class="gallery">
 
-<i></i>
+            <div class="gallery-topline">
+              <span id="galleryCollection">FRRIDAY / CORE</span>
+              <span id="galleryAvailability">AVAILABLE</span>
+            </div>
 
-</div>
+            <div class="gallery-main" id="galleryMain">
+              <!-- Images inserted by JS -->
+            </div>
 
+            <div class="gallery-index" id="galleryIndex">
+              01 / 01
+            </div>
 
-<section
-  id="productError"
-  class="product-state error-state"
-  hidden
->
+            <div class="gallery-thumbs" id="galleryThumbs"></div>
 
-<span class="eyebrow">
-PRODUCT / UNAVAILABLE
-</span>
+          </div>
 
-<h1>
-We couldn't load this piece.
-</h1>
+        </div>
 
-<p>
-Return to the collection and try again.
-</p>
+      </div>
 
-<p
-  id="productErrorMessage"
-  class="error-detail"
-></p>
 
-<a
-  class="pill dark-pill"
-  href="/shop.html"
->
-Back to collection <span>↖</span>
-</a>
+      <!-- PRODUCT INFO -->
 
-</section>
+      <aside class="product-info">
+
+        <div class="product-meta">
+          <span id="productCode">CORE 02</span>
+          <span id="productAvailability" class="availability">
+            Available
+          </span>
+        </div>
 
-
-<section
-  id="productView"
-  hidden
->
-
-
-<div class="product-hero">
-
-
-<div
-  class="product-gallery"
-  id="gallery"
->
-
-
-<div class="gallery-main">
-
-<div class="gallery-frame">
-
-<img
-  id="mainImage"
-  alt=""
->
-
-</div>
-
-
-<div
-  id="galleryFallback"
-  class="gallery-fallback"
-  hidden
->
-IMAGE UNAVAILABLE
-</div>
-
-</div>
-
-
-<div
-  class="gallery-thumbs"
-  id="thumbs"
-  aria-label="Product images"
-></div>
-
-
-<span
-  class="gallery-index"
-  id="galleryIndex"
->
-01 / 01
-</span>
-
-</div>
-
-
-<aside class="product-panel">
-
-
-<div class="product-kicker">
-
-<span id="productType">
-CORE
-</span>
-
-<span id="productAvailability">
-AVAILABLE
-</span>
-
-</div>
-
-
-<h1 id="productTitle">
-Product
-</h1>
-
-
-<div
-  class="product-price"
-  id="productPrice"
->
-$0
-</div>
-
-
-<p
-  class="product-description"
-  id="productDescription"
->
-</p>
-
-
-<div class="product-rule"></div>
-
-
-<div class="size-block">
-
-<div class="size-head">
-
-<span>
-SIZE
-</span>
-
-<button
-  type="button"
-  id="sizeGuideBtn"
->
-SIZE GUIDE
-</button>
-
-</div>
-
-
-<div
-  class="size-grid"
-  id="sizeGrid"
-></div>
-
-<p
-  class="selection-note"
-  id="selectionNote"
->
-Select a size
-</p>
-
-</div>
-
-
-<div class="purchase-row">
-
-
-<div class="quantity">
-
-<button
-  type="button"
-  id="qtyMinus"
-  aria-label="Decrease quantity"
->
-−
-</button>
-
-<span id="qtyValue">
-1
-</span>
-
-<button
-  type="button"
-  id="qtyPlus"
-  aria-label="Increase quantity"
->
-+
-</button>
-
-</div>
-
-
-<button
-  type="button"
-  class="add-to-bag"
-  id="addToBag"
-  disabled
->
-ADD TO BAG
-</button>
-
-</div>
-
-
-<div class="product-accordions">
-
-
-<details>
-
-<summary>
-DETAILS
-<span>+</span>
-</summary>
-
-<div
-  class="accordion-content"
-  id="detailsContent"
->
-Designed as an everyday layer with a restrained FRRIDAY identity.
-</div>
-
-</details>
-
-
-<details open>
-
-<summary>
-SHIPPING & RETURNS
-<span>×</span>
-</summary>
-
-<div class="accordion-content">
-
-<p>
-Made to order through our fulfillment partner.
-Delivery estimates and available shipping methods are shown at checkout.
-</p>
-
-<p>
-Returns and refunds follow the FRRIDAY store policy.
-</p>
-
-<p class="policy-links">
-
-<a href="/policies/shipping">
-Shipping policy
-</a>
-
-<a href="/policies/returns">
-Returns & refunds
-</a>
-
-</p>
-
-</div>
-
-</details>
-
-
-</div>
-
-
-</aside>
-
-</div>
-
-
-<section class="product-editorial">
-
-<div>
-
-<span class="eyebrow">
-FRRIDAY / CORE
-</span>
-
-<h2>
-BUILT QUIETLY.
-</h2>
-
-</div>
-
-<p>
-Considered proportions, restrained branding and everyday utility.
-Nothing added without reason.
-</p>
-
-</section>
-
-
-</section>
-
-</main>
-
-
-<div
-  id="sizeModal"
-  class="modal"
-  hidden
->
-
-<div class="modal-backdrop"></div>
-
-<div
-  class="modal-card"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="sizeModalTitle"
->
-
-<button
-  type="button"
-  class="modal-close"
-  id="sizeModalClose"
-  aria-label="Close size guide"
->
-×
-</button>
-
-<span class="eyebrow">
-FRRIDAY / SIZE GUIDE
-</span>
-
-<h2 id="sizeModalTitle">
-SIZE GUIDE
-</h2>
-
-<div id="sizeTable">
-</div>
-
-</div>
-
-</div>
-
-
-<div
-  class="toast"
-  id="toast"
-  role="status"
-  aria-live="polite"
-></div>
-
-
-<script src="/shopify-config.js"></script>
-<script src="/product.js"></script>
+        <h1 id="productTitle" class="product-heading">
+          Product
+        </h1>
+
+        <p id="productSubtitle" class="product-subtitle"></p>
+
+        <div class="price-row">
+          <span id="productPrice" class="price">$0.00</span>
+          <span id="comparePrice" class="compare-price" hidden></span>
+        </div>
+
+
+        <div class="color-row">
+          <span>Colour</span>
+          <span id="productColor" class="color-value">
+            —
+          </span>
+        </div>
+
+
+        <!-- SIZE -->
+
+        <div class="section-label">
+          <span>Size</span>
+
+          <button
+            id="sizeGuideButton"
+            class="size-guide-trigger"
+            type="button"
+          >
+            Size Guide
+          </button>
+        </div>
+
+        <div id="sizeGrid" class="size-grid"></div>
+
+        <p id="selectionNote" class="selection-note">
+          Select a size
+        </p>
+
+
+        <!-- BUY -->
+
+        <div class="buy-area">
+
+          <div class="quantity">
+            <button
+              id="quantityMinus"
+              type="button"
+              aria-label="Decrease quantity"
+            >
+              −
+            </button>
+
+            <span id="quantityValue" class="quantity-value">
+              1
+            </span>
+
+            <button
+              id="quantityPlus"
+              type="button"
+              aria-label="Increase quantity"
+            >
+              +
+            </button>
+          </div>
+
+          <button
+            id="addToBag"
+            class="add-button"
+            type="button"
+            disabled
+          >
+            Select a size
+          </button>
+
+        </div>
+
+
+        <!-- ACCORDIONS -->
+
+        <div class="accordions">
+
+          <details class="accordion">
+            <summary>
+              <span>Details</span>
+              <span class="accordion-icon">+</span>
+            </summary>
+
+            <div class="accordion-content">
+              <p id="detailsContent">
+                Designed with considered proportions, restrained
+                branding and everyday utility.
+              </p>
+            </div>
+          </details>
+
+
+          <details class="accordion">
+            <summary>
+              <span>Shipping & Returns</span>
+              <span class="accordion-icon">+</span>
+            </summary>
+
+            <div class="accordion-content">
+              <p>
+                Made to order through our fulfillment partner.
+                Delivery estimates and available shipping methods
+                are shown at checkout. Please review our
+                <a href="/policies/shipping">shipping policy</a>
+                and
+                <a href="/policies/returns">returns policy</a>
+                before ordering.
+              </p>
+            </div>
+          </details>
+
+
+          <details class="accordion">
+            <summary>
+              <span>Care</span>
+              <span class="accordion-icon">+</span>
+            </summary>
+
+            <div class="accordion-content">
+              <p>
+                Follow the care instructions supplied with the
+                garment. Wash and dry according to the product
+                label to preserve the fabric and construction.
+              </p>
+            </div>
+          </details>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       SIZE GUIDE MODAL
+  ======================================================== -->
+
+  <div
+    id="sizeModal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="sizeModalTitle"
+  >
+
+    <div class="modal-card">
+
+      <div class="modal-head">
+        <span id="sizeModalTitle" class="modal-title">
+          FRRIDAY / Size Guide
+        </span>
+
+        <button
+          id="sizeModalClose"
+          class="modal-close"
+          type="button"
+          aria-label="Close size guide"
+        >
+          ×
+        </button>
+      </div>
+
+      <table class="size-table">
+
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Chest</th>
+            <th>Length</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>XS</td>
+            <td>26¼</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td>S</td>
+            <td>28</td>
+            <td>23¾</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>28½</td>
+            <td>25¾</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>29½</td>
+            <td>27¾</td>
+          </tr>
+          <tr>
+            <td>XL</td>
+            <td>30</td>
+            <td>29¾</td>
+          </tr>
+          <tr>
+            <td>2XL</td>
+            <td>30½</td>
+            <td>31¾</td>
+          </tr>
+          <tr>
+            <td>3XL</td>
+            <td>31</td>
+            <td>33¾</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       TOAST
+  ======================================================== -->
+
+  <div id="toast" class="toast">
+    Added to bag
+  </div>
+
+
+<script>
+/* ============================================================
+   FRRIDAY PRODUCT ENGINE
+   ============================================================ */
+
+(() => {
+  "use strict";
+
+  const CART_KEY = "frriday-cart-id";
+  const API = "/api/shopify";
+
+  const $ = (selector) => document.querySelector(selector);
+
+  const loadingState = $("#loadingState");
+  const errorState = $("#errorState");
+  const errorMessage = $("#errorMessage");
+  const productPage = $("#productPage");
+
+  const productTitle = $("#productTitle");
+  const productSubtitle = $("#productSubtitle");
+  const productPrice = $("#productPrice");
+  const comparePrice = $("#comparePrice");
+  const productColor = $("#productColor");
+  const productCode = $("#productCode");
+  const productAvailability = $("#productAvailability");
+
+  const galleryMain = $("#galleryMain");
+  const galleryThumbs = $("#galleryThumbs");
+  const galleryIndex = $("#galleryIndex");
+
+  const sizeGrid = $("#sizeGrid");
+  const selectionNote = $("#selectionNote");
+
+  const quantityValue = $("#quantityValue");
+  const quantityMinus = $("#quantityMinus");
+  const quantityPlus = $("#quantityPlus");
+  const addToBag = $("#addToBag");
+
+  const bagCount = $("#bagCount");
+
+  const sizeModal = $("#sizeModal");
+  const sizeGuideButton = $("#sizeGuideButton");
+  const sizeModalClose = $("#sizeModalClose");
+
+  const toast = $("#toast");
+
+  let product = null;
+  let variants = [];
+  let selectedVariant = null;
+  let quantity = 1;
+  let activeImage = 0;
+
+
+  /* ==========================================================
+     HANDLE
+  ========================================================== */
+
+  function getHandle() {
+    const url = new URL(window.location.href);
+
+    const path = url.pathname.split("/").filter(Boolean);
+
+    const index = path.indexOf("products");
+
+    if (index !== -1 && path[index + 1]) {
+      return decodeURIComponent(path[index + 1]);
+    }
+
+    return url.searchParams.get("handle") || "";
+  }
+
+
+  /* ==========================================================
+     LOCAL PRODUCT IMAGES
+  ========================================================== */
+
+  const LOCAL_GALLERY = {
+    "unisex-half-zip-pullover": [
+      {
+        url: "/assets/halfzip-front.jpg",
+        alt: "FRRIDAY CORE 01 Half-Zip Pullover front"
+      },
+      {
+        url: "/assets/halfzip-back.jpg",
+        alt: "FRRIDAY CORE 01 Half-Zip Pullover back"
+      }
+    ],
+
+    "unisex-full-zip-hoodie": [
+      {
+        url: "/assets/fullzip-front.jpg",
+        alt: "FRRIDAY CORE 02 Full-Zip Pullover front"
+      },
+      {
+        url: "/assets/fullzip-back.jpg",
+        alt: "FRRIDAY CORE 02 Full-Zip Pullover back"
+      }
+    ]
+  };
+
+
+  /* ==========================================================
+     SHOPIFY
+  ========================================================== */
+
+  const PRODUCT_QUERY = `
+    query ProductByHandle($handle: String!) {
+      productByHandle(handle: $handle) {
+        id
+        handle
+        title
+        description
+        descriptionHtml
+        availableForSale
+
+        featuredImage {
+          url
+          altText
+        }
+
+        images(first: 20) {
+          nodes {
+            id
+            url
+            altText
+          }
+        }
+
+        variants(first: 100) {
+          nodes {
+            id
+            title
+            availableForSale
+            quantityAvailable
+
+            price {
+              amount
+              currencyCode
+            }
+
+            compareAtPrice {
+              amount
+              currencyCode
+            }
+
+            selectedOptions {
+              name
+              value
+            }
+
+            image {
+              url
+              altText
+            }
+          }
+        }
+      }
+    }
+  `;
+
+
+  const CART_CREATE = `
+    mutation CartCreate($input: CartInput!) {
+      cartCreate(input: $input) {
+        cart {
+          id
+          checkoutUrl
+          totalQuantity
+        }
+
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+
+  const CART_LINES_ADD = `
+    mutation CartLinesAdd(
+      $cartId: ID!,
+      $lines: [CartLineInput!]!
+    ) {
+      cartLinesAdd(
+        cartId: $cartId,
+        lines: $lines
+      ) {
+        cart {
+          id
+          checkoutUrl
+          totalQuantity
+        }
+
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
+
+
+  async function shopify(query, variables = {}) {
+    const response = await fetch(API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        query,
+        variables
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data?.error ||
+        data?.errors?.[0]?.message ||
+        "Shopify request failed."
+      );
+    }
+
+    if (data.errors?.length) {
+      throw new Error(data.errors[0].message);
+    }
+
+    return data.data;
+  }
+
+
+  /* ==========================================================
+     HELPERS
+  ========================================================== */
+
+  function formatMoney(amount, currency) {
+    const number = Number(amount);
+
+    try {
+      return new Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: currency || "USD",
+        maximumFractionDigits: 2
+      }).format(number);
+    } catch {
+      return `$${number.toFixed(2)}`;
+    }
+  }
+
+
+  function showError(message) {
+    loadingState.hidden = true;
+    productPage.hidden = true;
+    errorState.hidden = false;
+
+    errorMessage.textContent = message;
+  }
+
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timer);
+
+    showToast.timer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2200);
+  }
+
+
+  function getProductImages() {
+    const local = LOCAL_GALLERY[product.handle];
+
+    if (local?.length) {
+      return local;
+    }
+
+    const remote =
+      product.images?.nodes?.map((image) => ({
+        url: image.url,
+        alt: image.altText || product.title
+      })) || [];
+
+    if (!remote.length && product.featuredImage) {
+      remote.push({
+        url: product.featuredImage.url,
+        alt: product.featuredImage.altText || product.title
+      });
+    }
+
+    return remote;
+  }
+
+
+  function extractColor() {
+    const variant = variants[0];
+
+    if (!variant) {
+      return "—";
+    }
+
+    const option =
+      variant.selectedOptions?.find(
+        (item) =>
+          item.name.toLowerCase() === "color" ||
+          item.name.toLowerCase() === "colour"
+      );
+
+    if (option) {
+      return option.value;
+    }
+
+    const titleParts = variant.title
+      .split("/")
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+    return titleParts.length > 1
+      ? titleParts[0]
+      : "—";
+  }
+
+
+  function getCoreCode() {
+    if (product.handle === "unisex-half-zip-pullover") {
+      return "CORE 01";
+    }
+
+    if (product.handle === "unisex-full-zip-hoodie") {
+      return "CORE 02";
+    }
+
+    return "CORE";
+  }
+
+
+  /* ==========================================================
+     RENDER PRODUCT
+  ========================================================== */
+
+  function renderProduct() {
+    productTitle.textContent = product.title;
+
+    productSubtitle.textContent =
+      product.description ||
+      "Considered proportions, restrained branding and everyday utility.";
+
+    productCode.textContent = getCoreCode();
+
+    productColor.textContent = extractColor();
+
+    productAvailability.textContent =
+      product.availableForSale
+        ? "Available"
+        : "Unavailable";
+
+    productAvailability.style.opacity =
+      product.availableForSale ? "1" : "0.45";
+
+    renderPrice();
+    renderGallery();
+    renderSizes();
+
+    loadingState.hidden = true;
+    errorState.hidden = true;
+    productPage.hidden = false;
+  }
+
+
+  function renderPrice() {
+    const variant = variants.find(
+      (item) => item.availableForSale
+    ) || variants[0];
+
+    if (!variant) {
+      productPrice.textContent = "—";
+      return;
+    }
+
+    productPrice.textContent = formatMoney(
+      variant.price.amount,
+      variant.price.currencyCode
+    );
+
+    if (variant.compareAtPrice) {
+      comparePrice.hidden = false;
+
+      comparePrice.textContent = formatMoney(
+        variant.compareAtPrice.amount,
+        variant.compareAtPrice.currencyCode
+      );
+    } else {
+      comparePrice.hidden = true;
+    }
+  }
+
+
+  /* ==========================================================
+     GALLERY
+  ========================================================== */
+
+  function renderGallery() {
+    const images = getProductImages();
+
+    galleryMain.innerHTML = "";
+    galleryThumbs.innerHTML = "";
+
+    if (!images.length) {
+      galleryMain.innerHTML = `
+        <div style="
+          font-family:var(--mono);
+          font-size:8px;
+          letter-spacing:.15em;
+          text-transform:uppercase;
+          color:var(--muted);
+        ">
+          Image unavailable
+        </div>
+      `;
+
+      galleryIndex.textContent = "01 / 01";
+      return;
+    }
+
+    images.forEach((image, index) => {
+      const img = document.createElement("img");
+
+      img.className =
+        "product-image" +
+        (index === 0 ? " active" : "");
+
+      img.src = image.url;
+      img.alt = image.alt || product.title;
+      img.loading = index === 0 ? "eager" : "lazy";
+      img.decoding = "async";
+
+      galleryMain.appendChild(img);
+
+
+      const button = document.createElement("button");
+
+      button.className =
+        "thumb" +
+        (index === 0 ? " active" : "");
+
+      button.type = "button";
+
+      button.setAttribute(
+        "aria-label",
+        `View image ${index + 1}`
+      );
+
+      button.innerHTML = `
+        <img
+          src="${image.url}"
+          alt=""
+          loading="lazy"
+        />
+      `;
+
+      button.addEventListener("click", () => {
+        setImage(index);
+      });
+
+      galleryThumbs.appendChild(button);
+    });
+
+    galleryIndex.textContent =
+      `01 / ${String(images.length).padStart(2, "0")}`;
+  }
+
+
+  function setImage(index) {
+    const images =
+      [...galleryMain.querySelectorAll(".product-image")];
+
+    const thumbs =
+      [...galleryThumbs.querySelectorAll(".thumb")];
+
+    if (!images[index]) return;
+
+    images.forEach((image, i) => {
+      image.classList.toggle("active", i === index);
+    });
+
+    thumbs.forEach((thumb, i) => {
+      thumb.classList.toggle("active", i === index);
+    });
+
+    activeImage = index;
+
+    galleryIndex.textContent =
+      `${String(index + 1).padStart(2, "0")} / ${String(images.length).padStart(2, "0")}`;
+  }
+
+
+  /* ==========================================================
+     SIZES
+  ========================================================== */
+
+  function renderSizes() {
+    sizeGrid.innerHTML = "";
+
+    const sizeVariants = variants.filter((variant) => {
+      return variant.selectedOptions?.some(
+        (option) =>
+          option.name.toLowerCase() === "size"
+      );
+    });
+
+    if (!sizeVariants.length) {
+      selectedVariant = variants.find(
+        (variant) => variant.availableForSale
+      ) || variants[0];
+
+      updateSelection();
+      return;
+    }
+
+    sizeVariants.forEach((variant) => {
+      const sizeOption =
+        variant.selectedOptions.find(
+          (option) =>
+            option.name.toLowerCase() === "size"
+        );
+
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "size-button";
+
+      button.textContent = sizeOption.value;
+
+      const available =
+        variant.availableForSale !== false;
+
+      if (!available) {
+        button.classList.add("disabled");
+        button.disabled = true;
+      }
+
+      button.addEventListener("click", () => {
+        selectedVariant = variant;
+
+        [...sizeGrid.children].forEach(
+          (child) => child.classList.remove("selected")
+        );
+
+        button.classList.add("selected");
+
+        updateSelection();
+        renderSelectedPrice();
+      });
+
+      sizeGrid.appendChild(button);
+    });
+
+    const firstAvailable =
+      sizeVariants.find(
+        (variant) => variant.availableForSale
+      );
+
+    if (firstAvailable) {
+      selectedVariant = firstAvailable;
+
+      const index =
+        sizeVariants.indexOf(firstAvailable);
+
+      sizeGrid.children[index]?.classList.add("selected");
+    }
+
+    updateSelection();
+    renderSelectedPrice();
+  }
+
+
+  function renderSelectedPrice() {
+    if (!selectedVariant) return;
+
+    productPrice.textContent =
+      formatMoney(
+        selectedVariant.price.amount,
+        selectedVariant.price.currencyCode
+      );
+
+    if (selectedVariant.compareAtPrice) {
+      comparePrice.hidden = false;
+
+      comparePrice.textContent =
+        formatMoney(
+          selectedVariant.compareAtPrice.amount,
+          selectedVariant.compareAtPrice.currencyCode
+        );
+    } else {
+      comparePrice.hidden = true;
+    }
+  }
+
+
+  function updateSelection() {
+    if (!selectedVariant) {
+      selectionNote.textContent =
+        "Select a size";
+
+      addToBag.disabled = true;
+      addToBag.textContent = "Select a size";
+
+      return;
+    }
+
+    const size =
+      selectedVariant.selectedOptions?.find(
+        (option) =>
+          option.name.toLowerCase() === "size"
+      )?.value;
+
+    selectionNote.textContent =
+      size
+        ? `Selected: ${size}`
+        : "Selected";
+
+    addToBag.disabled =
+      !selectedVariant.availableForSale;
+
+    addToBag.textContent =
+      selectedVariant.availableForSale
+        ? "Add to Bag"
+        : "Unavailable";
+  }
+
+
+  /* ==========================================================
+     QUANTITY
+  ========================================================== */
+
+  function updateQuantity(value) {
+    quantity = Math.max(
+      1,
+      Math.min(10, Number(value) || 1)
+    );
+
+    quantityValue.textContent = quantity;
+  }
+
+
+  quantityMinus.addEventListener("click", () => {
+    updateQuantity(quantity - 1);
+  });
+
+
+  quantityPlus.addEventListener("click", () => {
+    updateQuantity(quantity + 1);
+  });
+
+
+  /* ==========================================================
+     BAG
+  ========================================================== */
+
+  function updateBagCount(value) {
+    const number = Number(value) || 0;
+
+    bagCount.textContent =
+      number > 99
+        ? "99+"
+        : number;
+  }
+
+
+  function readStoredCartId() {
+    try {
+      return localStorage.getItem(CART_KEY);
+    } catch {
+      return null;
+    }
+  }
+
+
+  function storeCartId(id) {
+    try {
+      localStorage.setItem(CART_KEY, id);
+    } catch {}
+  }
+
+
+  async function addProductToBag() {
+    if (!selectedVariant) {
+      showToast("Select a size");
+      return;
+    }
+
+    if (!selectedVariant.availableForSale) {
+      showToast("This size is unavailable");
+      return;
+    }
+
+    addToBag.disabled = true;
+    addToBag.textContent = "Adding…";
+
+    try {
+      const existingCartId = readStoredCartId();
+
+      let cart;
+
+      if (existingCartId) {
+        const data = await shopify(
+          CART_LINES_ADD,
+          {
+            cartId: existingCartId,
+
+            lines: [
+              {
+                merchandiseId: selectedVariant.id,
+                quantity
+              }
+            ]
+          }
+        );
+
+        const result = data.cartLinesAdd;
+
+        if (result.userErrors?.length) {
+          throw new Error(
+            result.userErrors
+              .map((error) => error.message)
+              .join(", ")
+          );
+        }
+
+        cart = result.cart;
+      } else {
+        const data = await shopify(
+          CART_CREATE,
+          {
+            input: {
+              lines: [
+                {
+                  merchandiseId: selectedVariant.id,
+                  quantity
+                }
+              ]
+            }
+          }
+        );
+
+        const result = data.cartCreate;
+
+        if (result.userErrors?.length) {
+          throw new Error(
+            result.userErrors
+              .map((error) => error.message)
+              .join(", ")
+          );
+        }
+
+        cart = result.cart;
+      }
+
+      if (!cart?.id) {
+        throw new Error(
+          "The cart could not be created."
+        );
+      }
+
+      storeCartId(cart.id);
+
+      updateBagCount(cart.totalQuantity);
+
+      showToast(
+        `${product.title} added to bag`
+      );
+
+    } catch (error) {
+      console.error(error);
+
+      showToast(
+        error.message ||
+        "Could not add to bag"
+      );
+    } finally {
+      updateSelection();
+    }
+  }
+
+
+  addToBag.addEventListener(
+    "click",
+    addProductToBag
+  );
+
+
+  /* ==========================================================
+     SIZE GUIDE
+  ========================================================== */
+
+  function openSizeGuide() {
+    sizeModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+
+  function closeSizeGuide() {
+    sizeModal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+
+  sizeGuideButton.addEventListener(
+    "click",
+    openSizeGuide
+  );
+
+  sizeModalClose.addEventListener(
+    "click",
+    closeSizeGuide
+  );
+
+
+  sizeModal.addEventListener("click", (event) => {
+    if (event.target === sizeModal) {
+      closeSizeGuide();
+    }
+  });
+
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.key === "Escape") {
+        closeSizeGuide();
+      }
+    }
+  );
+
+
+  /* ==========================================================
+     LOAD
+  ========================================================== */
+
+  async function loadProduct() {
+    const handle = getHandle();
+
+    if (!handle) {
+      showError(
+        "No product was specified."
+      );
+      return;
+    }
+
+    try {
+      const data = await shopify(
+        PRODUCT_QUERY,
+        { handle }
+      );
+
+      product = data.productByHandle;
+
+      if (!product) {
+        throw new Error(
+          "This product could not be found."
+        );
+      }
+
+      variants =
+        product.variants?.nodes || [];
+
+      renderProduct();
+
+    } catch (error) {
+      console.error(
+        "FRRIDAY product error:",
+        error
+      );
+
+      showError(
+        error.message ||
+        "We couldn't load this piece."
+      );
+    }
+  }
+
+
+  /* ==========================================================
+     INIT
+  ========================================================== */
+
+  updateQuantity(1);
+  loadProduct();
+
+})();
+</script>
 
 </body>
-
 </html>
