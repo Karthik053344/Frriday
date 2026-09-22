@@ -1,15 +1,56 @@
 {
   "rewrites": [
-    { "source": "/products/:handle", "destination": "/product.html?handle=:handle" }
+    {
+      "source": "/products/:handle",
+      "destination": "/product.html?handle=:handle"
+    },
+
+    {
+      "source": "/policies/privacy",
+      "destination": "/legal.html"
+    },
+
+    {
+      "source": "/policies/terms",
+      "destination": "/legal.html"
+    },
+
+    {
+      "source": "/policies/shipping",
+      "destination": "/legal.html"
+    },
+
+    {
+      "source": "/policies/returns",
+      "destination": "/legal.html"
+    },
+
+    {
+      "source": "/contact",
+      "destination": "/legal.html"
+    }
   ],
+
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     }
   ]
